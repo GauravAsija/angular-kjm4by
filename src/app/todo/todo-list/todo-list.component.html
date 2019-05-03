@@ -1,0 +1,12 @@
+<table class="table table-bordered table-condensed table-striped">
+  <tr>
+    <th width="100">S.No.</th>
+    <th width="200">Is Completed</th>
+    <th>Taskname</th>
+    <th>Action</th>
+  </tr>
+  <app-todo-data></app-todo-data>
+  <tr>
+    <td colspan="4" class="text-center" *ngIf="todos.length == 0">No Records Available</td>
+  </tr>
+</table>

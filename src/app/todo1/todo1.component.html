@@ -1,0 +1,45 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <input type="text" (keydown.enter)="onClick()" class="form-control" placeholder="Add Task Name" #input="ngModel" [(ngModel)]="title" required minlength="4"  />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" (click)="onClick()" [disabled]="!input.valid">Add</button>
+          </span>
+        </div>
+        <!-- /input-group -->
+      </div>
+      <!-- /.col-lg-6 -->
+      <div class="col-lg-3">
+        <span></span>
+      </div>
+      <div class="col-lg-3">
+        <button class="pull-right btn btn-sm" [ngClass]="classAdd ? 'btn-danger' : 'btn-success'" (click)="toggleTable()">Toggle Table</button>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+</header>
+<section *ngIf="expanded" >
+  <div class="container">
+    <table class="table table-bordered table-condensed table-striped">
+        <tr>
+          <th width="100">S.No.</th>
+          <th width="200">Is Completed</th>
+          <th>Taskname</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let todo of todos; let i = index;" [attr.id]="todo.id">
+          <td>{{todo.id}}</td>
+          <td><input type="checkbox" (change)="completedTask()" [(ngModel)]="todo.isCompleted" ></td>
+          <td [ngClass]="todo.isCompleted ? 'taskDone' : 'notDone'">{{todo.taskName}}</td>
+          <td><a href="javascript:;" (click)="onDelete(i)"><i class="fa fa-close"></i></a></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="text-center" *ngIf="todos.length == 0">No Records Available</td>
+        </tr>
+
+    </table>
+  </div>
+</section>
